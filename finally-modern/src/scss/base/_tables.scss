@@ -1,0 +1,15 @@
+// Imported from phpMyAdmin themes/bootstrap/scss/_tables.scss — colours mapped to tokens.
+.table {
+  th,
+  td {
+    > span:empty::before {
+      content: "\200b";
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .table th.position-sticky {
+    top: 96px;
+  }
+}

@@ -1,0 +1,428 @@
+/* Data tables — shadcn table look, compact 28px rows */
+.table,
+table.data,
+table.pma-table,
+table.table_results {
+  @apply w-auto text-[0.8125rem] mb-3 border border-border rounded-lg bg-card;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.table.w-100,
+table.w-100 {
+  width: 100%;
+}
+
+.table > :not(caption) > * > *,
+table.data th,
+table.data td,
+table.pma-table th,
+table.pma-table td {
+  @apply border-0 border-b border-border align-middle;
+  padding: 0.1875rem 0.5rem;
+  line-height: 1.25rem;
+  box-shadow: none;
+}
+
+.table > thead > tr > th,
+.table > thead > tr > td,
+table.data > thead > tr > th,
+table.pma-table > thead > tr > th,
+.table th[scope="col"],
+.table thead th {
+  @apply bg-muted text-muted-foreground font-medium text-xs whitespace-nowrap text-left;
+  height: 2rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.table > thead > tr:first-child > th:first-child { border-top-left-radius: calc(var(--radius) - 1px); }
+.table > thead > tr:first-child > th:last-child { border-top-right-radius: calc(var(--radius) - 1px); }
+.table > :last-child > tr:last-child > *,
+table.data > :last-child > tr:last-child > * {
+  border-bottom: 0;
+}
+.table > :last-child > tr:last-child > :first-child { border-bottom-left-radius: calc(var(--radius) - 1px); }
+.table > :last-child > tr:last-child > :last-child { border-bottom-right-radius: calc(var(--radius) - 1px); }
+
+.table th a,
+.table thead th a {
+  @apply text-foreground font-medium no-underline;
+}
+
+.table th a:hover {
+  @apply underline;
+}
+
+.table tbody th {
+  @apply font-medium text-foreground bg-transparent;
+}
+
+.table tfoot th,
+.table tfoot td,
+.table tr.tblFooters th,
+.table tr.tblFooters td {
+  @apply bg-muted font-medium;
+}
+
+/* Sticky headers sit under the fixed top bar (breadcrumb 37px + tabs 41px) */
+@media only screen and (min-width: 768px) {
+  .table th.position-sticky,
+  .table thead th.position-sticky {
+    top: 78px;
+    z-index: 2;
+  }
+}
+
+/* Row states */
+.table-hover > tbody > tr:hover > *,
+.table > tbody > tr:hover > *,
+table.data > tbody > tr:hover > * {
+  background-color: var(--row-hover);
+  --bs-table-bg-state: transparent;
+}
+
+.table tr.marked:not(.nomarker) > td,
+.table tr.marked:not(.nomarker) > th,
+table.data tr.marked:not(.nomarker) > td,
+table.data tr.marked:not(.nomarker) > th,
+.table td.marked:not(.nomarker),
+table.data td.marked:not(.nomarker) {
+  background-color: var(--row-marked) !important;
+  --bs-table-bg-state: transparent;
+}
+
+.table tr.marked:not(.nomarker):hover > td,
+table.data tr.marked:not(.nomarker):hover > td {
+  background-color: var(--row-marked-strong) !important;
+}
+
+.table td.hover:not(.nomarker),
+.table th.hover:not(.nomarker),
+table.data td.hover:not(.nomarker) {
+  background-color: var(--row-hover);
+}
+
+.table-striped > tbody > tr:nth-of-type(even) > * {
+  --bs-table-bg-type: transparent;
+}
+
+/* Values */
+td.null,
+.table td.null {
+  @apply text-muted-foreground italic;
+}
+
+.table td.text-end,
+.table td.right,
+td.value {
+  @apply tabular-nums;
+}
+
+td.condition,
+th.condition {
+  border-color: var(--border-strong) !important;
+}
+
+.table td pre,
+table.data td pre {
+  @apply font-mono text-xs m-0 whitespace-pre-wrap;
+}
+
+.table td.grid_edit:not(.nomarker):hover,
+.table td.grid_edit.hover {
+  cursor: cell;
+}
+
+/* Result table chrome */
+.table_results {
+  @apply mt-1;
+}
+
+.table_results th.column_action {
+  @apply text-center;
+}
+
+.table_results td.d-print-none {
+  @apply px-0.5 py-0 text-center;
+  width: 1%;
+}
+
+.table_results .column_heading.marker {
+  @apply cursor-pointer;
+}
+
+.table_results th.draggable {
+  cursor: grab;
+}
+
+.table_results th .sorted_desc,
+.table_results th .sorted_asc,
+.table_results th .soimg {
+  @apply size-3 ml-1;
+}
+
+/* Column drop / visibility list (cList) */
+.cDrop,
+.cEdit {
+  @apply absolute;
+}
+
+.coldrop {
+  @apply rounded-sm border border-border bg-background;
+}
+
+.coldrop:hover,
+.coldrop-hover {
+  @apply bg-accent;
+}
+
+.cList {
+  @apply absolute z-[110] rounded-lg border border-border bg-popover text-popover-foreground shadow-md p-1 text-[0.8125rem];
+}
+
+.cList .lDiv div {
+  @apply flex items-center gap-2 px-2 py-1 rounded-sm;
+}
+
+.cList .lDiv div:hover {
+  @apply bg-accent;
+}
+
+.showAllColBtn {
+  @apply mt-1 px-2 py-1 rounded-sm border-t border-border text-center text-xs font-medium text-foreground cursor-pointer;
+}
+
+.showAllColBtn:hover {
+  @apply bg-accent;
+}
+
+.cPointer {
+  @apply bg-primary;
+}
+
+.cRsz div {
+  @apply cursor-col-resize;
+}
+
+.cRsz div.colborder_active,
+.cRsz .colborder:hover {
+  border-right: 2px solid var(--ring);
+}
+
+/* Inline cell editor */
+.cEdit {
+  @apply z-[120];
+}
+
+.cEdit .edit_area {
+  @apply rounded-lg border border-border bg-popover shadow-lg p-2 min-w-60;
+}
+
+.cEdit .edit_box {
+  @apply rounded-md border border-ring bg-background px-2 text-[0.8125rem];
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 40%, transparent);
+}
+
+.cEdit .edit_area_loading {
+  @apply bg-popover;
+}
+
+.cEdit .goto_link {
+  @apply text-xs;
+}
+
+.saving_edited_data {
+  opacity: 0.6;
+}
+
+.to_be_saved {
+  @apply bg-warning-muted;
+}
+
+/* Bulk action bar under result / structure tables */
+.selectallarrow,
+img.selectallarrow {
+  @apply size-4 text-muted-foreground align-middle mx-1;
+}
+
+form[name="resultsForm"] > .d-print-none,
+.print_ignore:has(> .checkall_box),
+div:has(> .checkall_box):not(.cList) {
+  @apply flex flex-wrap items-center gap-1 my-2;
+}
+
+.checkall_box + label {
+  @apply text-foreground no-underline mr-2 text-[0.8125rem];
+}
+
+.checkall_box + label:hover {
+  @apply text-foreground no-underline;
+}
+
+em.with-selected {
+  @apply not-italic text-xs text-muted-foreground ml-2 mr-1;
+}
+
+button.mult_submit,
+.btn.mult_submit {
+  @apply inline-flex items-center gap-1.5 h-7 px-2 rounded-md text-[0.8125rem] font-medium text-foreground no-underline bg-transparent border-0 shadow-none;
+}
+
+button.mult_submit:hover,
+button.mult_submit:focus {
+  @apply bg-accent text-foreground no-underline;
+}
+
+/* Pager row (.navigation table) */
+table.navigation {
+  @apply border-0 my-2 w-auto rounded-none;
+  background: none;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+table.navigation td {
+  @apply border-0 p-0 pr-1.5 align-middle bg-transparent;
+}
+
+table.navigation td form {
+  @apply inline-flex items-center gap-1.5;
+}
+
+table.navigation input[type="submit"] {
+  @apply h-7 min-w-7 px-1.5 m-0 rounded-md border border-border bg-background text-foreground shadow-xs font-mono text-xs;
+}
+
+table.navigation input[type="submit"]:hover {
+  @apply bg-accent text-foreground;
+  background-image: none;
+}
+
+.navigation_separator {
+  @apply inline-block w-px h-5 bg-border text-transparent mx-1 align-middle overflow-hidden;
+}
+
+td.navigation_separator {
+  @apply w-0 p-0;
+}
+
+.navigation .showAllRows + label {
+  @apply mr-2;
+}
+
+/* Sort-by keyword row etc. */
+.sortlink {
+  @apply inline-flex items-center gap-1;
+}
+
+/* Structure tables */
+#tablestructure td.nowrap,
+#structureTable td {
+  @apply whitespace-nowrap;
+}
+
+#structureTable .tbl_size,
+#structureTable .value,
+#tablestructure .value {
+  @apply font-mono text-xs;
+}
+
+.table-structure-actions {
+  @apply inline-flex items-center gap-0.5 m-0 p-0 list-none;
+}
+
+.table-structure-actions li {
+  @apply inline-flex;
+}
+
+.table-structure-actions .dropdown-menu {
+  @apply p-1;
+}
+
+/* Hide the expand toggle column decorations on dense list */
+.table .expanded,
+.table .collapsed {
+  @apply cursor-pointer;
+}
+
+/* Bootstrap .table-sm */
+.table-sm > :not(caption) > * > * {
+  padding: 0.125rem 0.375rem;
+}
+
+caption {
+  @apply text-xs text-muted-foreground font-medium caption-top px-0 pb-1.5;
+}
+
+.table-responsive,
+.table-responsive-md {
+  @apply rounded-lg;
+}
+
+/* Bitmap UI bits from the base theme → Lucide masks */
+.coldrop {
+  background: currentColor !important;
+  @apply text-muted-foreground rounded-sm;
+  -webkit-mask: var(--glyph-chevron-down) center / 14px no-repeat;
+  mask: var(--glyph-chevron-down) center / 14px no-repeat;
+}
+
+.coldrop:hover,
+.coldrop-hover {
+  @apply text-foreground;
+}
+
+.cPointer {
+  background: var(--ring) !important;
+  width: 2px !important;
+  margin-left: -1px !important;
+  @apply rounded-full;
+}
+
+span.drag_icon {
+  background: currentColor;
+  @apply text-muted-foreground w-4 h-6;
+  -webkit-mask: var(--glyph-grip) center / 14px no-repeat;
+  mask: var(--glyph-grip) center / 14px no-repeat;
+}
+
+th.header {
+  @apply text-foreground;
+}
+
+th.header .sorticon {
+  background: none !important;
+  @apply text-muted-foreground;
+}
+
+th.headerSortUp .sorticon,
+th.headerSortDown .sorticon {
+  background: currentColor !important;
+  -webkit-mask: var(--glyph-chevron-down) center / 14px no-repeat;
+  mask: var(--glyph-chevron-down) center / 14px no-repeat;
+}
+
+th.headerSortDown .sorticon {
+  transform: rotate(180deg);
+}
+
+:root {
+  --glyph-chevron-down: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m6 9 6 6 6-6'/%3e%3c/svg%3e");
+  --glyph-grip: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3e%3ccircle cx='9' cy='12' r='1'/%3e%3ccircle cx='9' cy='5' r='1'/%3e%3ccircle cx='9' cy='19' r='1'/%3e%3ccircle cx='15' cy='12' r='1'/%3e%3ccircle cx='15' cy='5' r='1'/%3e%3ccircle cx='15' cy='19' r='1'/%3e%3c/svg%3e");
+  --glyph-loader: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3e%3cpath d='M21 12a9 9 0 1 1-6.219-8.56'/%3e%3c/svg%3e");
+}
+
+.cEdit .edit_box_posting,
+.cEdit .edit_area_loading,
+.saving_edited_data {
+  background-image: none !important;
+}
+
+/* Buttons/links rendered inside cells stay within the 28px row */
+.table td .btn,
+.table td .btn-link,
+table.data td .btn {
+  @apply h-5.5 px-1.5 text-xs;
+}

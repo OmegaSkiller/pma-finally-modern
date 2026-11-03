@@ -1,0 +1,262 @@
+/* Page-specific polish */
+
+/* ---------- Home ---------- */
+#maincontainer .card,
+#main_pane_left .card,
+#main_pane_right .card {
+  @apply mb-3;
+}
+
+#maincontainer ul,
+.card .list-group {
+  @apply text-[0.8125rem];
+}
+
+#maincontainer .list-group-item {
+  @apply py-1.5;
+}
+
+#li_select_lang,
+#li_select_theme,
+#li_select_fontsize,
+#li_mysql_collation {
+  @apply flex items-center gap-2;
+}
+
+/* ---------- Login ---------- */
+.loginform,
+#login_form {
+  @apply mx-auto;
+}
+
+body#loginform .container,
+.login-page .container {
+  @apply max-w-sm;
+}
+
+body#loginform .card,
+.login-page .card {
+  @apply shadow-sm;
+}
+
+body#loginform h1,
+.login-page h1 {
+  @apply block text-xl font-semibold tracking-tight text-center mt-14 mb-6;
+}
+
+body#loginform h1::before {
+  content: "";
+  @apply block mx-auto mb-3 size-10 rounded-xl bg-primary shadow-sm;
+  background-image: var(--logo-mark);
+  background-size: 22px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body#loginform .card {
+  @apply rounded-xl;
+}
+
+body#loginform img[src*="logo_right"],
+#loginform .logo {
+  @apply hidden;
+}
+
+#loginform .card-footer {
+  @apply justify-end;
+}
+
+/* ---------- Structure / Operations ---------- */
+#tablestatistics table,
+#tablerowstats {
+  @apply w-auto;
+}
+
+.operations_half_width,
+.operations_full_width {
+  @apply w-full;
+}
+
+
+/* Table creation / column definition grid */
+#table_columns {
+  @apply w-full;
+}
+
+#table_columns td,
+#table_columns th {
+  @apply px-1 py-1;
+}
+
+#table_columns input,
+#table_columns select {
+  @apply w-full;
+}
+
+/* Insert / edit form */
+#insertForm table.insertRowTable,
+table.insertRowTable {
+  @apply w-full;
+}
+
+table.insertRowTable td {
+  @apply align-middle;
+}
+
+/* Textareas grow with their content instead of reserving 7–15 empty rows */
+table.insertRowTable textarea,
+textarea.char {
+  margin: 0;
+  min-height: 1.75rem;
+  max-height: 18rem;
+  height: auto;
+  field-sizing: content;
+  min-width: 18rem;
+}
+
+@supports not (field-sizing: content) {
+  table.insertRowTable textarea.char { height: 3.25rem; }
+  table.insertRowTable textarea:not(.char) { height: 6rem; }
+}
+
+table.insertRowTable td {
+  @apply py-1;
+}
+
+table.insertRowTable td:first-child,
+table.insertRowTable td:nth-child(2) {
+  @apply text-left;
+}
+
+/* ---------- Export / Import ---------- */
+.exportoptions h2,
+.importoptions h2,
+#export_format_options h3 {
+  @apply text-sm font-semibold mt-4 mb-1.5;
+}
+
+.exportoptions ul,
+.importoptions ul,
+.format_specific_options ul {
+  @apply list-none pl-0;
+}
+
+.exportoptions li,
+.importoptions li,
+.format_specific_options li {
+  @apply flex items-center gap-2 py-0.5;
+}
+
+.export_sub_options,
+.format_specific_options {
+  @apply rounded-lg border border-border bg-card px-3 py-2;
+}
+
+#db_select,
+#table_select {
+  @apply w-full;
+}
+
+/* ---------- Server status / charts ---------- */
+.jqplot-target,
+#chartGrid .monitorChart {
+  @apply text-muted-foreground;
+}
+
+#chartGrid .monitorChart {
+  @apply rounded-lg border border-border bg-card;
+}
+
+#serverstatus h3,
+#serverStatusQueriesDetails h3 {
+  @apply text-sm;
+}
+
+/* ---------- Settings pages ---------- */
+.config-form fieldset,
+.config-form .pma-fieldset {
+  @apply rounded-lg;
+}
+
+.config-form fieldset th,
+.config-form fieldset td {
+  @apply border-border py-1.5;
+}
+
+.config-form fieldset .doc,
+.config-form fieldset .disabled-notice {
+  @apply ml-1;
+}
+
+.config-form .lastrow {
+  @apply bg-muted border-t border-border;
+}
+
+.config-form span.checkbox {
+  @apply p-0 inline-flex items-center;
+}
+
+.config-form .custom {
+  @apply bg-highlight;
+}
+
+.config-form .field-error {
+  @apply border-destructive;
+}
+
+.config-form .inline_errors {
+  @apply text-destructive text-xs list-none p-0 m-0 mt-1;
+}
+
+.tabs_contents fieldset {
+  @apply mt-0 rounded-t-none;
+}
+
+ul.tabs {
+  @apply flex gap-0 m-0 p-0 list-none border-b border-border;
+}
+
+ul.tabs li a {
+  @apply block px-3 py-1.5 text-[0.8125rem] font-medium text-muted-foreground no-underline -mb-px;
+  border-bottom: 2px solid transparent;
+}
+
+ul.tabs li a:hover {
+  @apply text-foreground;
+}
+
+ul.tabs li a.active {
+  @apply text-foreground;
+  border-bottom-color: var(--primary);
+}
+
+/* ---------- Designer ---------- */
+#canvas_outer {
+  @apply bg-muted;
+}
+
+.designer_tab .header,
+.designer_header {
+  @apply bg-background border-b border-border;
+}
+
+#designer_hint,
+.designer_tab {
+  @apply rounded-lg border border-border bg-card shadow-sm;
+}
+
+/* ---------- Errors / demo banners ---------- */
+#pma_demo {
+  @apply rounded-lg border border-border bg-card;
+}
+
+/* ---------- Print view ---------- */
+@media print {
+  #pma_navigation,
+  #floating_menubar,
+  #pma_console_container,
+  #page_nav_icons,
+  #selflink {
+    display: none !important;
+  }
+}

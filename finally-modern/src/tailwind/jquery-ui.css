@@ -1,0 +1,328 @@
+/* jQuery UI (dialogs, datepicker, tooltips, autocomplete) restyled as shadcn surfaces.
+   The stock jquery-ui.css still loads first; these rules win by order. */
+.ui-widget,
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+  @apply font-sans text-[0.8125rem];
+}
+
+.ui-widget-content {
+  @apply bg-popover text-popover-foreground border-border;
+  background-image: none;
+}
+
+.ui-widget-content a {
+  @apply text-link;
+}
+
+.ui-widget-header {
+  @apply bg-transparent text-foreground border-0 font-semibold;
+  background-image: none;
+}
+
+.ui-widget-overlay {
+  background: var(--overlay);
+  opacity: 1;
+}
+
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-bottom {
+  @apply rounded-md;
+}
+
+/* Default/hover/active states (buttons inside jQuery widgets) */
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button {
+  @apply bg-background border border-border text-foreground font-medium rounded-md shadow-xs;
+  background-image: none;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-button:hover,
+.ui-button:focus {
+  @apply bg-accent border-border text-foreground;
+  background-image: none;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active {
+  @apply bg-primary border-primary text-primary-foreground;
+  background-image: none;
+}
+
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight {
+  @apply bg-accent border-border-strong text-foreground;
+  background-image: none;
+}
+
+.ui-state-error,
+.ui-widget-content .ui-state-error {
+  @apply bg-destructive-muted border-destructive/40 text-destructive;
+  background-image: none;
+}
+
+.ui-state-disabled {
+  opacity: 0.45;
+}
+
+/* jQuery UI's sprite icons → Lucide chevrons/close */
+.ui-icon,
+.ui-widget-content .ui-icon,
+.ui-widget-header .ui-icon,
+.ui-state-default .ui-icon,
+.ui-state-hover .ui-icon,
+.ui-state-active .ui-icon {
+  background-image: none !important;
+  background-color: currentColor;
+  -webkit-mask: var(--ui-glyph, none) center / 14px no-repeat;
+  mask: var(--ui-glyph, none) center / 14px no-repeat;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+
+.ui-icon-closethick,
+.ui-icon-close {
+  --ui-glyph: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3e%3cpath d='M18 6 6 18M6 6l12 12'/%3e%3c/svg%3e");
+}
+
+.ui-icon-circle-triangle-w,
+.ui-icon-triangle-1-w,
+.ui-icon-carat-1-w {
+  --ui-glyph: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m15 18-6-6 6-6'/%3e%3c/svg%3e");
+}
+
+.ui-icon-circle-triangle-e,
+.ui-icon-triangle-1-e,
+.ui-icon-carat-1-e {
+  --ui-glyph: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m9 18 6-6-6-6'/%3e%3c/svg%3e");
+}
+
+.ui-icon-triangle-1-s,
+.ui-icon-carat-1-s {
+  --ui-glyph: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m6 9 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+.ui-icon-triangle-1-n,
+.ui-icon-carat-1-n {
+  --ui-glyph: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m18 15-6-6-6 6'/%3e%3c/svg%3e");
+}
+
+.ui-icon-gripsmall-diagonal-se {
+  --ui-glyph: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3e%3cpath d='M21 15 15 21M21 8 8 21'/%3e%3c/svg%3e");
+  opacity: 0.4;
+}
+
+/* Dialog */
+.ui-dialog {
+  @apply p-0 rounded-xl border border-border bg-background shadow-lg overflow-hidden;
+  z-index: 1050;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+  @apply flex items-center px-4 pt-3.5 pb-1.5 border-0 rounded-none bg-transparent;
+}
+
+.ui-dialog .ui-dialog-title {
+  @apply text-base font-semibold text-foreground m-0;
+  float: none;
+  flex: 1;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+  @apply static size-7 m-0 p-0 rounded-md border-0 bg-transparent shadow-none text-muted-foreground;
+  translate: none;
+}
+
+.ui-dialog .ui-dialog-titlebar-close:hover {
+  @apply bg-accent text-foreground;
+}
+
+.ui-dialog .ui-dialog-titlebar-close .ui-icon {
+  @apply static m-auto;
+}
+
+.ui-dialog .ui-dialog-content {
+  @apply px-4 py-2 bg-background text-foreground;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+  @apply flex justify-end border-0 mt-0 px-4 pt-2 pb-3.5 bg-background;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  @apply flex flex-row-reverse gap-2 float-none;
+}
+
+.ui-dialog .ui-dialog-buttonpane button {
+  @apply h-8 px-3 m-0 text-[0.8125rem];
+}
+
+.ui-dialog .ui-dialog-buttonpane button:first-child,
+.ui-dialog .ui-dialog-buttonpane button.btn-primary {
+  @apply bg-primary text-primary-foreground border-primary;
+}
+
+.ui-dialog .ui-dialog-buttonpane button.btn-secondary {
+  @apply bg-background text-foreground border-border;
+}
+
+.ui-dialog .ui-dialog-buttonpane button.btn-secondary:hover {
+  @apply bg-accent;
+}
+
+.ui-dialog .pma-fieldset {
+  @apply shadow-none;
+}
+
+/* Datepicker */
+.ui-datepicker {
+  @apply p-2 rounded-lg border border-border bg-popover shadow-md w-auto;
+  z-index: 1200 !important;
+}
+
+.ui-datepicker .ui-datepicker-header {
+  @apply p-0 pb-1.5 border-0 bg-transparent;
+}
+
+.ui-datepicker .ui-datepicker-title {
+  @apply text-[0.8125rem] font-medium leading-7;
+}
+
+.ui-datepicker .ui-datepicker-title select {
+  @apply text-xs;
+  min-height: 1.5rem;
+}
+
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+  @apply size-7 top-0 rounded-md border border-border bg-background;
+}
+
+.ui-datepicker .ui-datepicker-prev { left: 0; }
+.ui-datepicker .ui-datepicker-next { right: 0; }
+
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+  @apply static m-0 size-full;
+}
+
+.ui-datepicker th {
+  @apply text-[0.6875rem] font-normal text-muted-foreground p-1;
+}
+
+.ui-datepicker td {
+  @apply p-px;
+}
+
+.ui-datepicker td a,
+.ui-datepicker td span {
+  @apply size-7 p-0 rounded-md border-0 bg-transparent text-center text-xs leading-7 shadow-none text-foreground;
+}
+
+.ui-datepicker td a.ui-state-hover {
+  @apply bg-accent;
+}
+
+.ui-datepicker td a.ui-state-highlight {
+  @apply bg-accent text-foreground;
+}
+
+.ui-datepicker td a.ui-state-active {
+  @apply bg-primary text-primary-foreground;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane {
+  @apply flex justify-between gap-2 border-t border-border mt-1.5 pt-1.5 bg-transparent;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane button {
+  @apply h-7 px-2 m-0 text-xs;
+}
+
+.ui-datepicker-trigger {
+  @apply align-middle ml-1 cursor-pointer;
+}
+
+/* Timepicker add-on */
+.ui-timepicker-div .ui-widget-header {
+  @apply mb-2;
+}
+
+.ui-slider {
+  @apply bg-muted border-0 rounded-full h-1.5;
+}
+
+.ui-slider .ui-slider-handle {
+  @apply size-4 rounded-full border-2 border-primary bg-background shadow-sm -top-[5px];
+}
+
+.ui-slider .ui-slider-range {
+  @apply bg-primary rounded-full;
+}
+
+/* Tooltip */
+.ui-tooltip {
+  @apply rounded-md border-0 bg-primary text-primary-foreground text-xs px-2 py-1 shadow-md max-w-80;
+  background-image: none;
+}
+
+.ui-tooltip .ui-tooltip-content {
+  @apply text-primary-foreground;
+}
+
+.ui-tooltip a {
+  @apply text-primary-foreground underline;
+}
+
+/* Autocomplete / menu */
+.ui-menu {
+  @apply p-1 rounded-lg border border-border bg-popover shadow-md;
+}
+
+.ui-menu .ui-menu-item-wrapper {
+  @apply rounded-sm px-2 py-1 border-0;
+}
+
+.ui-menu .ui-menu-item-wrapper.ui-state-active {
+  @apply bg-accent text-accent-foreground border-0 m-0;
+}
+
+/* Tabs */
+.ui-tabs .ui-tabs-nav {
+  @apply bg-transparent border-0 border-b border-border rounded-none p-0;
+}
+
+.ui-tabs .ui-tabs-nav li {
+  @apply bg-transparent border-0 m-0 rounded-none;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+  border-bottom: 2px solid var(--primary);
+}
+
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+  @apply px-3 py-1.5 text-[0.8125rem] font-medium text-muted-foreground;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+  @apply text-foreground;
+}
+
+/* Sortable placeholders (designer, column ordering) */
+.ui-sortable-placeholder {
+  @apply bg-accent border border-dashed border-border-strong;
+  visibility: visible !important;
+}
+
+.ui-resizable-handle {
+  @apply bg-transparent;
+}

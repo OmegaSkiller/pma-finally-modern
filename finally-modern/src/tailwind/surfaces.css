@@ -1,0 +1,323 @@
+/* Cards, alerts, dialogs, menus */
+
+/* ---------- Card ---------- */
+.card {
+  @apply border border-border rounded-xl bg-card text-card-foreground shadow-xs mb-3;
+}
+
+.card-header {
+  @apply bg-transparent border-b border-border px-3.5 py-2.5 text-sm font-semibold text-foreground flex items-center gap-2;
+}
+
+.card-header:first-child {
+  border-radius: calc(0.75rem - 1px) calc(0.75rem - 1px) 0 0;
+}
+
+.card-header .icon {
+  @apply size-4 text-muted-foreground;
+}
+
+.card-body {
+  @apply px-3.5 py-3;
+}
+
+.card-footer {
+  @apply bg-muted border-t border-border px-3.5 py-2 flex flex-wrap items-center justify-end gap-2;
+}
+
+.card-footer:last-child {
+  border-radius: 0 0 calc(0.75rem - 1px) calc(0.75rem - 1px);
+}
+
+.card-title {
+  @apply text-sm font-semibold;
+}
+
+.card > .list-group:first-child,
+.card > .list-group:last-child {
+  @apply border-0;
+}
+
+/* ---------- Alerts (PMA messages) ---------- */
+.alert {
+  @apply relative block rounded-lg border border-border bg-card text-card-foreground text-[0.8125rem] px-3 py-2 mb-2 shadow-none;
+  line-height: 1.25rem;
+}
+
+.alert:has(> .icon:first-child) {
+  padding-left: 2.125rem;
+}
+
+.alert > .icon:first-child {
+  @apply absolute left-3 top-2.5 size-4;
+}
+
+.alert .alert {
+  @apply mb-0;
+}
+
+.alert p:last-child,
+.alert ul:last-child {
+  @apply mb-0;
+}
+
+.alert a {
+  @apply font-medium underline;
+  color: inherit;
+}
+
+.alert-success {
+  @apply border-success/30 bg-success-muted text-foreground;
+  --icon-color: var(--success);
+}
+
+.alert-danger {
+  @apply border-destructive/30 bg-destructive-muted text-destructive;
+  --icon-color: var(--destructive);
+}
+
+.alert-warning {
+  @apply border-warning/30 bg-warning-muted text-foreground;
+  --icon-color: var(--warning);
+}
+
+.alert-info,
+.alert-primary {
+  @apply border-info/25 bg-info-muted text-foreground;
+  --icon-color: var(--info);
+}
+
+.alert-secondary,
+.alert-light {
+  @apply bg-muted text-foreground border-border;
+}
+
+.alert .btn-close {
+  @apply absolute top-2 right-2 p-1;
+}
+
+/* Error/notice blocks from PMA's own markup */
+div.error,
+div.notice,
+div.success {
+  @apply rounded-lg border px-3 py-2 mb-2;
+}
+
+div.error { @apply border-destructive/30 bg-destructive-muted text-destructive; }
+div.notice { @apply border-warning/30 bg-warning-muted; }
+div.success { @apply border-success/30 bg-success-muted; }
+
+/* ---------- Badges ---------- */
+.badge {
+  @apply inline-flex items-center rounded-md border border-transparent text-[0.6875rem] font-medium leading-4;
+}
+
+.badge.bg-primary, .badge.text-bg-primary { @apply bg-primary text-primary-foreground; }
+.badge.bg-secondary, .badge.text-bg-secondary { @apply bg-secondary text-secondary-foreground; background-color: var(--secondary) !important; }
+.badge.bg-success, .badge.text-bg-success { background-color: var(--success-muted) !important; color: var(--success) !important; }
+.badge.bg-danger, .badge.text-bg-danger { background-color: var(--destructive-muted) !important; color: var(--destructive) !important; }
+.badge.bg-warning, .badge.text-bg-warning { background-color: var(--warning-muted) !important; color: var(--warning) !important; }
+.badge.bg-info, .badge.text-bg-info { background-color: var(--info-muted) !important; color: var(--info) !important; }
+
+/* ---------- Dropdown ---------- */
+.dropdown-menu {
+  @apply rounded-lg border border-border bg-popover text-popover-foreground shadow-md p-1 text-[0.8125rem] min-w-40;
+}
+
+.dropdown-item {
+  @apply flex items-center gap-2 rounded-sm px-2 py-1 text-[0.8125rem] text-popover-foreground;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  @apply bg-accent text-accent-foreground;
+}
+
+.dropdown-item .icon {
+  @apply size-4 text-muted-foreground;
+}
+
+.dropdown-divider {
+  @apply my-1 -mx-1 border-border;
+}
+
+.dropdown-header {
+  @apply px-2 py-1 text-xs font-medium text-muted-foreground;
+}
+
+/* ---------- Modal ---------- */
+.modal-content {
+  @apply rounded-xl border border-border bg-background shadow-lg;
+}
+
+.modal-header {
+  @apply border-0 px-4 pt-4 pb-2;
+}
+
+.modal-title {
+  @apply text-base font-semibold;
+}
+
+.modal-body {
+  @apply px-4 py-2;
+}
+
+.modal-footer {
+  @apply border-0 px-4 pb-4 pt-2 gap-2;
+}
+
+.modal-footer > * {
+  @apply m-0;
+}
+
+.modal-backdrop.show {
+  opacity: 1;
+  background: var(--overlay);
+}
+
+.modal.fade .modal-dialog {
+  transform: scale(0.97);
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.modal.show .modal-dialog {
+  transform: none;
+}
+
+/* ---------- List group ---------- */
+.list-group {
+  @apply rounded-lg;
+}
+
+.list-group-item {
+  @apply border-border bg-transparent text-foreground px-3.5 py-1 text-[0.8125rem];
+  line-height: 1.25rem;
+}
+
+.list-group-item .icon {
+  @apply size-4 text-muted-foreground mr-1;
+}
+
+.list-group-flush > .list-group-item {
+  @apply border-x-0;
+}
+
+.list-group-item-action:hover {
+  @apply bg-accent;
+}
+
+/* ---------- Accordion ---------- */
+.accordion-item {
+  @apply border-border bg-transparent;
+}
+
+.accordion-button {
+  @apply text-[0.8125rem] font-medium bg-transparent text-foreground shadow-none;
+}
+
+.accordion-button:not(.collapsed) {
+  @apply bg-muted text-foreground shadow-none;
+}
+
+.accordion-button::after {
+  background-image: var(--chevron);
+  background-size: 14px;
+  transform: none;
+}
+
+/* ---------- Pagination ---------- */
+.pagination {
+  @apply gap-1;
+}
+
+.page-link {
+  @apply inline-flex items-center justify-center min-w-7 h-7 px-2 rounded-md border border-transparent text-[0.8125rem] font-medium text-foreground;
+}
+
+.page-item:not(:first-child) .page-link {
+  margin-left: 0;
+}
+
+.page-item .page-link,
+.page-item:first-child .page-link,
+.page-item:last-child .page-link {
+  @apply rounded-md;
+}
+
+.page-item.active .page-link {
+  @apply border-border bg-background shadow-xs text-foreground;
+}
+
+.page-link:hover {
+  @apply bg-accent;
+}
+
+/* ---------- Progress ---------- */
+.progress {
+  @apply h-1.5 rounded-full bg-muted;
+}
+
+/* ---------- Misc PMA surfaces ---------- */
+.pma_drop_handler,
+#pma_drop_zone {
+  @apply rounded-xl border-2 border-dashed border-border-strong bg-muted text-muted-foreground;
+}
+
+.pma_sql_import_status {
+  @apply rounded-lg border border-border bg-popover shadow-lg;
+}
+
+.pma_sql_import_status h2 {
+  @apply bg-muted border-b border-border text-sm px-3 py-2 m-0 rounded-t-lg;
+}
+
+div#profilingchart,
+div#profilingChartData {
+  @apply rounded-lg border border-border bg-card;
+}
+
+/* Collapsible "Extra options" etc. */
+.slide-wrapper {
+  @apply rounded-lg;
+}
+
+.toggleable,
+a.ajax.formLinkSubmit {
+  @apply text-link;
+}
+
+/* Generic subtle "toggle" switch PMA renders on Operations / Settings */
+.toggleButton {
+  @apply rounded-full border border-border overflow-hidden;
+}
+
+.toggleButton .container td,
+.toggleButton .toggleOn,
+.toggleButton .toggleOff {
+  @apply text-xs font-medium;
+}
+
+.toggleButton .toggleOn {
+  @apply bg-primary text-primary-foreground;
+}
+
+.toggleButton .toggleOff {
+  @apply bg-muted text-muted-foreground;
+}
+
+/* Print view toolbar etc. */
+#printcss {
+  display: none;
+}
+
+/* Dense form rows inside cards (Bootstrap .mb-3 → 8px) */
+.card-body .mb-3,
+.card-body .row.mb-3,
+.pma-fieldset .mb-3 {
+  margin-bottom: 0.5rem !important;
+}
+
+.card-body .row.g-3 {
+  --bs-gutter-y: 0.5rem;
+  --bs-gutter-x: 0.75rem;
+}

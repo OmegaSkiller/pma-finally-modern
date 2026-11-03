@@ -1,0 +1,315 @@
+/* Left navigation panel — shadcn "sidebar" */
+#pma_navigation {
+  @apply bg-sidebar text-foreground border-r border-border;
+  font-size: 0.8125rem;
+}
+
+#pma_navigation_header {
+  @apply border-b border-border;
+}
+
+/* Logo: replaced by a crisp wordmark; the bitmap stays for screen readers */
+#pma_navigation #pmalogo {
+  @apply bg-transparent px-3 pt-3 pb-1 text-left;
+}
+
+#pmalogo a {
+  @apply inline-flex items-center gap-2 no-underline text-foreground;
+}
+
+#pmalogo a::before {
+  content: "";
+  @apply size-6 rounded-md bg-primary shrink-0;
+  -webkit-mask: none;
+  background-image: var(--logo-mark);
+  background-size: 14px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#pmalogo a::after {
+  content: "phpMyAdmin";
+  @apply text-sm font-semibold tracking-tight text-foreground;
+}
+
+#imgpmalogo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+/* Icon toolbar (home, logout, docs, settings, reload) */
+#pma_navigation #navipanellinks {
+  @apply bg-transparent flex items-center gap-0.5 px-2 py-1.5 text-left;
+}
+
+#navipanellinks a {
+  @apply inline-flex items-center justify-center size-7 rounded-md text-muted-foreground no-underline;
+  margin: 0 !important;
+}
+
+#navipanellinks a:hover {
+  @apply bg-sidebar-accent text-foreground;
+}
+
+#pma_navigation #navipanellinks .icon {
+  @apply size-4 m-0;
+}
+
+/* Server choice */
+#pma_navigation #serverChoice {
+  @apply px-3 py-1.5;
+}
+
+/* Recent / Favourites quick warp */
+.pma_quick_warp {
+  @apply flex gap-1.5 px-3 py-2 m-0 border-b border-border;
+}
+
+.pma_quick_warp .drop_list {
+  @apply relative m-0 p-0 float-none;
+}
+
+.pma_quick_warp .drop_button {
+  @apply inline-flex items-center h-6 px-2 rounded-md border border-border bg-background text-xs font-medium
+         text-foreground shadow-xs cursor-pointer;
+}
+
+.pma_quick_warp .drop_list:hover .drop_button {
+  @apply bg-accent;
+}
+
+.pma_quick_warp .drop_list ul {
+  @apply min-w-56 left-0 right-auto top-full mt-1 p-1 rounded-lg border border-border bg-popover shadow-md;
+}
+
+.pma_quick_warp .drop_list li {
+  @apply rounded-sm;
+}
+
+.pma_quick_warp .drop_list li:hover {
+  @apply bg-accent;
+}
+
+.pma_quick_warp .drop_list a {
+  @apply px-2 py-1 text-foreground no-underline;
+}
+
+/* Tree */
+#pma_navigation_tree {
+  @apply mx-1.5 mt-1.5 text-foreground;
+  font-size: 0.8125rem;
+}
+
+#pma_navigation_tree a {
+  @apply text-foreground no-underline;
+}
+
+#pma_navigation_tree a:hover {
+  @apply no-underline;
+}
+
+#pma_navigation_tree li {
+  @apply rounded-md;
+  min-height: 1.625rem;
+  line-height: 1.625rem;
+}
+
+#pma_navigation_tree li > a,
+#pma_navigation_tree li > i {
+  line-height: 1.625rem;
+  height: 1.625rem;
+  padding-left: 0.25rem;
+}
+
+#pma_navigation_tree a.hover_show_full {
+  vertical-align: top;
+  @apply text-[0.8125rem];
+}
+
+/* Highlight paints only the item's own 26px row, never its expanded children */
+#pma_navigation_tree li.activePointer,
+#pma_navigation_tree li.selected {
+  background: linear-gradient(var(--sidebar-accent), var(--sidebar-accent)) top / 100% 1.625rem no-repeat;
+}
+
+/* Only the deepest selected node gets the pill; ancestors stay plain */
+#pma_navigation_tree li.selected:has(li.selected) {
+  background: none;
+}
+
+#pma_navigation_tree li.selected > a.hover_show_full {
+  @apply font-medium;
+}
+
+#pma_navigation_tree li.selected > a.hover_show_full {
+  @apply text-foreground;
+}
+
+/* Expander + node icon blocks */
+#pma_navigation_tree div.block {
+  width: 1.25rem;
+  height: 1.625rem;
+  min-height: 1.625rem;
+}
+
+#pma_navigation_tree div.block.second {
+  width: 1.375rem;
+}
+
+#pma_navigation_tree div.block.double {
+  width: 2.5rem;
+}
+
+#pma_navigation_tree div.block i,
+#pma_navigation_tree div.block b {
+  display: none;
+}
+
+#pma_navigation_tree div.block a,
+#pma_navigation_tree div.block u,
+#pma_navigation_tree div.block.double a,
+#pma_navigation_tree div.block.double u {
+  @apply absolute inset-0 flex items-center justify-center text-muted-foreground;
+  left: 0;
+  top: 0;
+}
+
+#pma_navigation_tree div.block.double a + a {
+  left: 1.25rem;
+}
+
+#pma_navigation_tree div.block a + a {
+  left: 0;
+}
+
+#pma_navigation_tree div.block img,
+#pma_navigation_tree div.block .icon {
+  position: static;
+  margin: 0;
+  top: 0;
+}
+
+#pma_navigation_tree div.block a.expander .icon {
+  @apply size-3.5;
+}
+
+#pma_navigation_tree div.block a:hover {
+  @apply text-foreground;
+}
+
+#pma_navigation_tree li.selected > div.block .icon,
+#pma_navigation_tree li.activePointer > div.block .icon {
+  @apply text-foreground;
+}
+
+/* Nested guides: one subtle vertical rule per level */
+#pma_navigation_tree .list_container {
+  @apply border-l border-border ml-2.5 pl-1.5;
+}
+
+#pma_navigation_tree .last > .list_container {
+  @apply border-l border-border;
+}
+
+#pma_navigation_tree li.new_database a,
+#pma_navigation_tree li.new_table a,
+#pma_navigation_tree li[class*="new_"] > a.hover_show_full {
+  @apply text-muted-foreground;
+}
+
+/* Inline controls on hover (e.g. hide / show) */
+#pma_navigation_tree li .navItemControls,
+#pma_navigation_tree li .dbItemControls {
+  @apply pr-1;
+}
+
+#pma_navigation_tree li .navItemControls .icon,
+#pma_navigation_tree li .dbItemControls .icon {
+  @apply size-3.5 text-muted-foreground;
+}
+
+/* Fast filter */
+#pma_navigation li.fast_filter {
+  @apply border-0 m-0 px-0 py-1 pr-0;
+}
+
+#pma_navigation li.fast_filter input {
+  @apply w-full h-7 text-xs rounded-md border border-input bg-background px-2 shadow-xs;
+  font-size: 0.75rem;
+}
+
+#pma_navigation li.fast_filter.db_fast_filter {
+  @apply px-0;
+}
+
+li.fast_filter .searchClauseClear {
+  @apply text-muted-foreground;
+}
+
+#navigation_controls_outer {
+  @apply flex items-center px-1 py-1;
+  min-height: 1.75rem !important;
+}
+
+#navigation_controls {
+  @apply flex gap-0.5 float-none ml-auto pr-0;
+}
+
+#navigation_controls a {
+  @apply inline-flex items-center justify-center size-6 rounded-md text-muted-foreground;
+}
+
+#navigation_controls a:hover {
+  @apply bg-sidebar-accent text-foreground;
+}
+
+/* Single-database dropdown mode */
+#pma_navigation_db_select {
+  @apply mx-2 mt-2;
+}
+
+#pma_navigation_db_select select {
+  @apply w-full h-7 rounded-md border border-input bg-background px-2 text-xs shadow-xs;
+  background-image: var(--chevron);
+  background-repeat: no-repeat;
+  background-position: right 0.375rem center;
+  background-size: 14px;
+}
+
+/* Paging inside long lists */
+#pma_navigation div.pageselector {
+  @apply border-0 ml-0 my-1;
+}
+
+/* Resizer & collapser */
+#pma_navigation_resizer {
+  @apply bg-transparent;
+  width: 4px !important;
+  margin-left: -2px;
+}
+
+#pma_navigation_resizer:hover {
+  background: color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+#pma_navigation_collapser {
+  @apply size-6 rounded-md border border-border bg-background text-muted-foreground shadow-xs leading-5 font-normal text-sm;
+  top: 0.4375rem;
+  margin-left: 0.375rem;
+  text-shadow: none;
+  filter: none;
+  z-index: 801;
+}
+
+#pma_navigation_collapser:hover {
+  @apply bg-accent text-foreground;
+}
+
+/* Navigation settings & tree reload icons */
+#pma_navigation_reload,
+#pma_navigation_settings_icon {
+  @apply text-muted-foreground;
+}

@@ -1,0 +1,204 @@
+/* SQL editor, highlighted query blocks, CodeMirror */
+
+/* Query result header: message + highlighted SQL + tools in one card */
+.result_query {
+  @apply rounded-lg border border-border bg-card mb-3 overflow-hidden;
+}
+
+.result_query > .alert {
+  @apply m-0 rounded-none border-0 border-b border-border;
+}
+
+.result_query .sqlOuter {
+  @apply m-0 rounded-none border-0 bg-transparent;
+}
+
+.result_query div.tools {
+  @apply flex flex-wrap items-center justify-end gap-x-1 gap-y-1 m-0 px-3 py-1.5 border-t border-border bg-muted text-xs;
+  border-radius: 0;
+}
+
+.result_query div.tools form {
+  @apply inline-flex items-center gap-1.5 mr-auto;
+}
+
+div.tools {
+  @apply text-xs text-muted-foreground;
+}
+
+div.tools a,
+.result_query div.tools a {
+  @apply text-muted-foreground no-underline font-medium;
+  color: var(--muted-foreground) !important;
+}
+
+div.tools a:hover {
+  @apply text-foreground underline;
+  color: var(--foreground) !important;
+}
+
+/* Drop the "[ Edit inline ] [ Edit ]" bracket text nodes; links become a quiet toolbar */
+.result_query div.tools {
+  font-size: 0;
+  column-gap: 0.25rem;
+}
+
+.result_query div.tools > * {
+  font-size: 0.75rem;
+}
+
+.result_query div.tools > a {
+  @apply inline-flex items-center h-6 px-1.5 rounded-md;
+}
+
+.result_query div.tools > a:hover {
+  @apply bg-accent no-underline;
+}
+
+.sqlOuter {
+  @apply rounded-lg border border-border bg-muted text-foreground font-mono text-xs leading-5 px-3 py-2 my-2 overflow-x-auto;
+}
+
+.sqlOuter code,
+code.sql {
+  @apply bg-transparent border-0 p-0 font-mono text-xs block;
+  color: var(--foreground);
+}
+
+.sqlOuter pre {
+  @apply m-0;
+}
+
+/* Syntax colours (static highlighter + CodeMirror) */
+.cm-keyword, .cm-s-default .cm-keyword,
+.cm-keyword a, .cm-sql-doc { color: var(--syn-keyword) !important; text-decoration: none; }
+.cm-string, .cm-s-default .cm-string,
+.cm-string-2 { color: var(--syn-string) !important; }
+.cm-number, .cm-s-default .cm-number,
+.cm-atom { color: var(--syn-number) !important; }
+.cm-variable-2, .cm-s-default .cm-variable-2,
+.cm-variable-3, .cm-def { color: var(--syn-variable) !important; }
+.cm-comment, .cm-s-default .cm-comment { color: var(--syn-comment) !important; font-style: italic; }
+.cm-operator, .cm-punctuation, .cm-bracket { color: var(--syn-operator) !important; }
+.cm-builtin, .cm-s-default .cm-builtin,
+.cm-type, .cm-qualifier { color: var(--syn-builtin) !important; }
+.cm-variable, .cm-property { color: var(--foreground); }
+
+.cm-sql-doc:hover {
+  text-decoration: underline;
+}
+
+/* CodeMirror editor */
+.CodeMirror {
+  @apply rounded-lg border border-input font-mono text-xs leading-5 shadow-xs;
+  background: var(--input-bg) !important;
+  color: var(--foreground) !important;
+  height: 16rem;
+}
+
+.CodeMirror-focused {
+  @apply border-ring;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 40%, transparent);
+}
+
+.CodeMirror pre,
+.CodeMirror-line {
+  @apply font-mono;
+}
+
+.CodeMirror-gutters {
+  @apply bg-muted border-r border-border;
+  border-radius: calc(var(--radius) - 1px) 0 0 calc(var(--radius) - 1px);
+}
+
+.CodeMirror-linenumber {
+  @apply text-muted-foreground text-[0.6875rem];
+}
+
+.CodeMirror-cursor {
+  border-left: 1.5px solid var(--foreground) !important;
+}
+
+.CodeMirror-selected,
+.CodeMirror-focused .CodeMirror-selected,
+.CodeMirror-line::selection,
+.CodeMirror-line > span::selection {
+  background: color-mix(in oklab, var(--link) 22%, transparent) !important;
+}
+
+.CodeMirror-activeline-background {
+  background: var(--row-hover);
+}
+
+.CodeMirror-matchingbracket {
+  @apply rounded-sm;
+  color: var(--foreground) !important;
+  background: var(--accent);
+  outline: 1px solid var(--border-strong);
+}
+
+.CodeMirror-hints {
+  @apply rounded-lg border border-border bg-popover shadow-md p-1 font-mono text-xs z-[1200];
+}
+
+.CodeMirror-hint {
+  @apply rounded-sm px-2 py-0.5;
+  color: var(--popover-foreground);
+}
+
+li.CodeMirror-hint-active {
+  @apply bg-accent text-accent-foreground;
+}
+
+.CodeMirror-lint-tooltip {
+  @apply rounded-md border border-border bg-popover text-popover-foreground shadow-md text-xs;
+}
+
+/* SQL box page */
+#sqlquerycontainer {
+  @apply w-[70%];
+}
+
+#tablefieldscontainer {
+  @apply w-[29%];
+}
+
+#tablefieldscontainer select {
+  @apply w-full;
+}
+
+#sqlquerycontainerfull {
+  @apply w-full;
+}
+
+textarea#sqlquery {
+  @apply w-full font-mono text-xs;
+}
+
+#bookmarkOptions,
+#queryboxfooter {
+  @apply flex flex-wrap items-center gap-2;
+}
+
+#sqlqueryform .pma-fieldset {
+  @apply rounded-lg;
+}
+
+.sqlqueryresults .pma-fieldset {
+  @apply mt-2;
+}
+
+#querymessage {
+  @apply text-xs text-muted-foreground;
+}
+
+/* "Show query" boxes in operations / export previews */
+code.php,
+.syntax {
+  @apply rounded-md bg-muted px-1.5 py-0.5 font-mono text-xs;
+}
+
+.syntax_quote { color: var(--syn-string); }
+.syntax_alpha_reservedWord, .syntax_alpha_functionName { color: var(--syn-keyword); }
+.syntax_digit { color: var(--syn-number); }
+.syntax_punct { color: var(--syn-operator); }

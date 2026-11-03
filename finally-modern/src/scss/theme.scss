@@ -1,0 +1,29 @@
+// Structural base: Bootstrap 5.3 + phpMyAdmin layout partials (colours tokenised).
+// Visual design lives in src/tailwind/*.css, which is appended after this.
+@import "variables";
+@import "bootstrap";
+@import "base/common";
+@import "base/enum-editor";
+@import "base/gis";
+@import "base/navigation";
+@import "base/designer";
+@import "base/jqplot";
+@import "base/reboot";
+@import "base/tables";
+@import "base/forms";
+@import "base/breadcrumb";
+@import "base/print";
+
+// Icon box. Glyphs come from the generated Lucide mask sheet.
+.icon {
+  margin: 0;
+  padding: 0 !important;
+  width: 16px;
+  height: 16px;
+  vertical-align: -3px;
+}
+
+.icon_fulltext {
+  width: 50px;
+  height: 19px;
+}

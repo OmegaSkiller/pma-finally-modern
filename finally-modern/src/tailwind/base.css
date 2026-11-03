@@ -1,0 +1,233 @@
+/* Base typography, surfaces, focus and scrollbars */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-size: 16px;
+}
+
+body {
+  @apply bg-background text-foreground font-sans;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  font-feature-settings: "cv11", "ss01";
+}
+
+body#loginform,
+body.loginform {
+  @apply bg-muted;
+}
+
+#page_content {
+  @apply px-4 pt-3 pb-16;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply text-foreground font-semibold tracking-tight;
+  text-wrap: balance;
+}
+
+h2 {
+  @apply text-base my-3 flex items-center gap-2;
+}
+
+h2 .icon,
+h3 .icon {
+  @apply size-4;
+}
+
+h3 {
+  @apply text-sm;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  @apply text-link;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  @apply text-link;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--ring) 70%, transparent);
+  outline-offset: 1px;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--link) 25%, transparent);
+}
+
+code, kbd, pre, samp, tt,
+.monospace, .text-monospace, .font-monospace {
+  @apply font-mono;
+  font-size: 0.75rem;
+}
+
+code {
+  @apply text-foreground;
+}
+
+kbd {
+  @apply bg-muted text-muted-foreground border border-border rounded-sm px-1 py-px shadow-none;
+}
+
+hr {
+  @apply border-border opacity-100 my-3;
+}
+
+small, .small {
+  @apply text-xs;
+}
+
+.text-muted,
+.text-body-secondary,
+.text-secondary {
+  color: var(--muted-foreground) !important;
+}
+
+.text-danger { color: var(--destructive) !important; }
+.text-success { color: var(--success) !important; }
+.text-warning { color: var(--warning) !important; }
+.text-info { color: var(--info) !important; }
+.bg-light { background-color: var(--muted) !important; }
+.bg-white { background-color: var(--background) !important; }
+.bg-body-tertiary, .bg-body-secondary { background-color: var(--muted) !important; }
+.border, .border-top, .border-bottom, .border-start, .border-end {
+  border-color: var(--border) !important;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--muted-foreground);
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Generic helpers PMA templates rely on */
+.clearfloat {
+  clear: both;
+}
+
+.hide {
+  display: none;
+}
+
+.hint,
+.formelement .hint,
+.config-form .doc {
+  @apply text-muted-foreground;
+}
+
+.disabled,
+.disabled a {
+  @apply text-muted-foreground;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+/* Floating "loading / done" notification */
+.ajax_notification {
+  background-image: none !important;
+  @apply fixed left-1/2 -translate-x-1/2 top-3 z-[1100] w-auto max-w-md
+         rounded-lg border border-border bg-popover text-popover-foreground shadow-lg
+         px-3 py-2 text-xs font-medium m-0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  right: auto;
+}
+
+.ajax_notification::before {
+  content: "";
+  @apply size-3.5 shrink-0 bg-current text-muted-foreground;
+  -webkit-mask: var(--glyph-loader) center / contain no-repeat;
+  mask: var(--glyph-loader) center / contain no-repeat;
+  animation: fm-spin 0.8s linear infinite;
+}
+
+.ajax_notification.dismissable::before,
+.ajax_notification:has(.alert)::before {
+  display: none;
+}
+
+/* Base theme paints .tooltip with a ridge border; neutralise it */
+.tooltip {
+  background: transparent !important;
+  opacity: 1 !important;
+  border: 0 !important;
+}
+
+.tooltip-inner {
+  @apply rounded-md bg-primary text-primary-foreground text-xs px-2 py-1;
+}
+
+#loading_parent {
+  position: relative;
+  width: 100%;
+}
+
+#loading {
+  @apply absolute top-1/2 left-1/2 text-muted-foreground;
+}
+
+/* Tooltip-ish helpers (PMA "pma_tooltip") */
+.tooltip {
+  --bs-tooltip-bg: var(--primary);
+  --bs-tooltip-color: var(--primary-foreground);
+  --bs-tooltip-font-size: 0.75rem;
+  --bs-tooltip-border-radius: 0.375rem;
+}
+
+/* "Go to top" / page action icons sit inside the breadcrumb bar */
+#goto_pagetop,
+#lock_page_icon,
+#page_settings_icon {
+  @apply inline-flex items-center justify-center size-6 rounded-md text-muted-foreground cursor-pointer;
+}
+
+#goto_pagetop:hover,
+#lock_page_icon:hover,
+#page_settings_icon:hover {
+  @apply bg-accent text-foreground;
+}

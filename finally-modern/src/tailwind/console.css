@@ -1,0 +1,83 @@
+/* Bottom SQL console */
+#pma_console .toolbar {
+  @apply bg-background border-t border-border text-xs text-muted-foreground;
+  min-height: 1.75rem;
+  line-height: 1.75rem;
+}
+
+#pma_console .toolbar.collapsed:not(:hover) {
+  @apply rounded-tr-lg border-r border-border bg-background;
+}
+
+#pma_console .toolbar .button,
+#pma_console .switch_button {
+  @apply inline-flex items-center gap-1.5 h-7 px-2 rounded-none text-xs font-medium text-muted-foreground;
+}
+
+#pma_console .toolbar .button:hover,
+#pma_console .switch_button:hover,
+#pma_console .toolbar .button.active {
+  @apply bg-accent text-foreground;
+}
+
+#pma_console .switch_button .icon {
+  @apply size-3.5;
+}
+
+#pma_console .toolbar .text {
+  @apply font-medium text-foreground;
+}
+
+#pma_console .content {
+  @apply bg-background border-t border-border text-xs;
+}
+
+#pma_console .content.console_dark_theme {
+  background: oklch(0.141 0.005 285.823);
+  color: oklch(0.985 0 0);
+}
+
+#pma_console .message,
+#pma_console .query_input {
+  @apply font-mono text-xs;
+}
+
+#pma_console .message {
+  @apply border-border py-1;
+}
+
+#pma_console .message::before,
+#pma_console .query_input::before {
+  @apply text-muted-foreground;
+}
+
+#pma_console .message .action_content {
+  @apply rounded-md border border-border bg-popover shadow-sm text-[0.6875rem];
+}
+
+#pma_console .message span.action {
+  @apply rounded-sm px-1 text-muted-foreground;
+}
+
+#pma_console .message span.action:hover {
+  @apply bg-accent text-foreground;
+}
+
+#pma_console .mid_layer {
+  background: var(--overlay);
+}
+
+#pma_console .card {
+  @apply bg-popover border-l border-border shadow-lg rounded-none;
+}
+
+#pma_console .card > .toolbar {
+  @apply border-t-0 border-b border-border;
+}
+
+#pma_console .query_input .CodeMirror,
+#pma_console .CodeMirror-wrap {
+  @apply border-0 shadow-none rounded-none bg-transparent;
+  background: transparent !important;
+  height: auto;
+}

@@ -1,0 +1,417 @@
+/* Buttons, inputs, selects, checkboxes — shadcn sizing (h-7 / h-8) */
+
+/* ---------- Buttons ---------- */
+.btn,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+button:not(:is(.btn-close, .navbar-toggler, .ui-button, .ui-dialog-titlebar-close, [class*="cm-"], .accordion-button, .nav-link, .dropdown-item, .drop_button, .btn-link, .mult_submit)) {
+  @apply inline-flex items-center justify-center gap-1.5 h-7 px-2.5 rounded-md text-[0.8125rem] font-medium leading-none whitespace-nowrap
+         border border-border bg-background text-foreground shadow-xs cursor-pointer select-none;
+  transition: background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease, transform 80ms ease;
+  vertical-align: middle;
+}
+
+.btn:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover {
+  @apply bg-accent text-accent-foreground border-border;
+}
+
+.btn:active,
+input[type="submit"]:active,
+input[type="button"]:active {
+  transform: scale(0.98);
+}
+
+.btn:focus-visible,
+input[type="submit"]:focus-visible,
+input[type="button"]:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
+  outline: none;
+  @apply border-ring;
+}
+
+.btn:disabled,
+.btn.disabled,
+input[type="submit"]:disabled,
+input[type="button"]:disabled {
+  @apply opacity-50 pointer-events-none;
+}
+
+.btn .icon {
+  @apply size-3.5;
+}
+
+/* Primary: PMA marks the main action as .btn-primary (Go, Import, Export…) */
+.btn-primary,
+input[type="submit"].btn-primary,
+input[type="submit"][id$="_go"],
+input[type="submit"][name="submit_go"],
+#buttonGo,
+input#button_submit_query {
+  @apply bg-primary text-primary-foreground border-primary;
+}
+
+.btn-primary:hover,
+input[type="submit"].btn-primary:hover,
+input[type="submit"][id$="_go"]:hover,
+#buttonGo:hover,
+input#button_submit_query:hover {
+  @apply text-primary-foreground border-primary;
+  background-color: color-mix(in oklab, var(--primary) 88%, var(--background));
+}
+
+.btn-secondary,
+.btn-light,
+.btn-outline-secondary,
+.btn-outline-primary,
+.btn-outline-dark {
+  @apply bg-background text-foreground border-border;
+}
+
+.btn-danger,
+.btn-outline-danger {
+  @apply bg-destructive text-white border-destructive;
+}
+
+.btn-danger:hover,
+.btn-outline-danger:hover {
+  @apply text-white border-destructive;
+  background-color: color-mix(in oklab, var(--destructive) 88%, black);
+}
+
+.btn-success {
+  @apply bg-success text-white border-success;
+}
+
+.btn-warning {
+  @apply bg-warning text-white border-warning;
+}
+
+.btn-info {
+  @apply bg-background text-info border-border;
+}
+
+.btn-link {
+  @apply inline-flex items-center gap-1 h-7 px-2 rounded-md border-0 bg-transparent shadow-none text-[0.8125rem] font-medium
+         text-muted-foreground no-underline;
+  vertical-align: middle;
+}
+
+.btn-link:hover {
+  @apply bg-accent text-foreground no-underline;
+}
+
+.btn-sm,
+.btn-group-sm > .btn {
+  @apply h-6 px-2 text-xs rounded-md;
+}
+
+.btn-lg {
+  @apply h-9 px-4 text-sm;
+}
+
+.btn-group > .btn {
+  @apply shadow-none;
+}
+
+.btn-group {
+  @apply shadow-xs rounded-md;
+}
+
+.btn-close {
+  @apply size-4 p-1 rounded-sm;
+  background-size: 0.75rem;
+  filter: var(--btn-close-filter, none);
+}
+
+/* ---------- Text inputs ---------- */
+.form-control,
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="search"],
+input[type="url"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="time"],
+input[type="tel"],
+textarea {
+  @apply rounded-md border border-input bg-transparent text-foreground shadow-xs text-[0.8125rem];
+  min-height: 1.75rem;
+  padding: 0.1875rem 0.5rem;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+  color-scheme: inherit;
+}
+
+.form-control,
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="search"],
+input[type="date"],
+textarea {
+  background-color: var(--input-bg);
+}
+
+textarea,
+textarea.form-control {
+  @apply font-mono text-xs leading-relaxed;
+  padding: 0.375rem 0.5rem;
+}
+
+.form-control::placeholder,
+input::placeholder,
+textarea::placeholder {
+  @apply text-muted-foreground opacity-100;
+}
+
+.form-control:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="search"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+.form-select:focus,
+select:focus {
+  @apply border-ring text-foreground;
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 40%, transparent);
+  background-color: var(--background);
+}
+
+.form-control:disabled,
+.form-control[readonly],
+input:disabled,
+select:disabled,
+textarea:disabled {
+  @apply bg-muted opacity-60 cursor-not-allowed;
+}
+
+.form-control-sm {
+  @apply text-xs;
+  min-height: 1.5rem;
+  padding: 0.125rem 0.375rem;
+}
+
+.is-invalid,
+.form-control.is-invalid {
+  @apply border-destructive;
+}
+
+.invalid-feedback {
+  @apply text-destructive text-xs;
+}
+
+/* ---------- Selects ---------- */
+.form-select,
+select:not([multiple]):not([size]),
+select[size="1"] {
+  @apply rounded-md border border-input text-foreground shadow-xs text-[0.8125rem] cursor-pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 1.75rem;
+  padding: 0.1875rem 1.75rem 0.1875rem 0.5rem;
+  background-color: var(--background);
+  background-image: var(--chevron);
+  background-repeat: no-repeat;
+  background-position: right 0.375rem center;
+  background-size: 14px 14px;
+  max-width: 100%;
+}
+
+.form-select-sm {
+  @apply text-xs;
+  min-height: 1.5rem;
+}
+
+select[multiple],
+select[size]:not([size="1"]) {
+  @apply rounded-md border border-input bg-background text-foreground shadow-xs p-1 text-[0.8125rem];
+}
+
+select[multiple] option,
+select[size]:not([size="1"]) option {
+  @apply rounded-sm px-1.5 py-0.5 bg-transparent;
+}
+
+select option:checked {
+  background: var(--accent) linear-gradient(0deg, var(--accent) 0%, var(--accent) 100%);
+  color: var(--foreground);
+}
+
+option, optgroup {
+  background-color: var(--popover);
+  color: var(--popover-foreground);
+}
+
+/* ---------- Checkboxes & radios ---------- */
+input[type="checkbox"],
+input[type="radio"],
+.form-check-input {
+  appearance: none;
+  -webkit-appearance: none;
+  @apply inline-grid place-content-center shrink-0 size-4 m-0 border border-input bg-background shadow-xs cursor-pointer align-middle;
+  border-color: var(--border-strong);
+  background-image: none;
+  transition: background-color 100ms ease, border-color 100ms ease;
+}
+
+input[type="checkbox"],
+.form-check-input[type="checkbox"] {
+  @apply rounded-[4px];
+}
+
+input[type="radio"],
+.form-check-input[type="radio"] {
+  @apply rounded-full;
+}
+
+input[type="checkbox"]:checked,
+.form-check-input[type="checkbox"]:checked {
+  @apply bg-primary border-primary;
+  background-image: var(--check);
+  background-size: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+input[type="checkbox"]:indeterminate {
+  @apply bg-primary border-primary;
+  background-image: var(--dash);
+  background-size: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+input[type="radio"]:checked,
+.form-check-input[type="radio"]:checked {
+  @apply bg-primary border-primary;
+  background-image: var(--radio-dot);
+  background-size: 100%;
+}
+
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible,
+.form-check-input:focus {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 40%, transparent);
+  outline: none;
+  @apply border-ring;
+}
+
+.form-switch .form-check-input {
+  @apply rounded-full w-7 h-4 bg-input border-transparent;
+  background-image: radial-gradient(circle, var(--background) 0 55%, transparent 56%);
+  background-size: 1rem 1rem;
+  background-position: left center;
+  background-repeat: no-repeat;
+  transition: background-position 120ms ease, background-color 120ms ease;
+}
+
+.form-switch .form-check-input:checked {
+  @apply bg-primary border-transparent;
+  background-image: radial-gradient(circle, var(--primary-foreground) 0 55%, transparent 56%);
+  background-position: right center;
+  background-size: 1rem 1rem;
+}
+
+.form-check {
+  @apply flex items-center gap-2 min-h-5 pl-0 mb-0.5;
+}
+
+.form-check .form-check-input {
+  @apply float-none m-0;
+}
+
+.form-check-label,
+label {
+  @apply text-[0.8125rem];
+}
+
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+  @apply ml-1 align-middle;
+}
+
+.form-label,
+.col-form-label {
+  @apply text-[0.8125rem] font-medium mb-1;
+}
+
+.form-text {
+  @apply text-xs text-muted-foreground;
+}
+
+input[type="file"] {
+  @apply text-xs text-muted-foreground;
+}
+
+input[type="file"]::file-selector-button {
+  @apply h-7 px-2.5 mr-2 rounded-md border border-border bg-background text-foreground text-xs font-medium cursor-pointer;
+}
+
+input[type="range"] {
+  accent-color: var(--primary);
+}
+
+.input-group-text {
+  @apply bg-muted text-muted-foreground border-input text-xs px-2;
+}
+
+.input-group > .form-control,
+.input-group > .form-select {
+  @apply shadow-none;
+}
+
+/* ---------- Fieldsets (PMA forms) ---------- */
+fieldset {
+  @apply min-w-0;
+}
+
+fieldset.pma-fieldset,
+.pma-fieldset {
+  @apply bg-card text-card-foreground border border-border rounded-lg shadow-xs mt-3 mb-0 px-3.5 py-3;
+}
+
+fieldset.pma-fieldset legend,
+.pma-fieldset legend {
+  @apply float-none w-auto m-0 mb-1 px-0 text-sm font-semibold text-foreground bg-transparent border-0 shadow-none;
+}
+
+fieldset.pma-fieldset.tblFooters,
+.pma-fieldset.tblFooters,
+.tblFooters {
+  @apply flex flex-wrap items-center justify-end gap-2 bg-muted border border-border border-t-0 rounded-t-none rounded-b-lg mt-0 px-3.5 py-2 shadow-none text-left;
+  clear: both;
+}
+
+fieldset.pma-fieldset + fieldset.pma-fieldset.tblFooters,
+.pma-fieldset:has(+ .tblFooters) {
+  @apply rounded-b-none mb-0;
+}
+
+fieldset.pma-fieldset + fieldset.pma-fieldset.tblFooters {
+  @apply rounded-t-none border-t;
+  border-top-color: var(--border);
+}
+
+.tblHeaders,
+th.tblHeaders,
+thead th.tblHeaders {
+  @apply bg-muted text-muted-foreground font-medium;
+}
+
+/* Inline form helpers */
+.formelement {
+  @apply inline-flex items-center gap-1.5 mr-3 align-middle;
+}
+
+.formelementrow {
+  @apply my-1;
+}
