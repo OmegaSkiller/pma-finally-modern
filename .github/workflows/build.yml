@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Check theme.json files
+        run: |
+          for d in dist/*/; do
+            node -e "const t=JSON.parse(require('fs').readFileSync('${d}theme.json','utf8')); for (const k of ['name','version','description','author','supports']) if (!t[k]) { console.error('${d}theme.json missing '+k); process.exit(1) }"
+            test -f "${d}screen.png" || { echo "${d}screen.png missing"; exit 1; }
+          done
